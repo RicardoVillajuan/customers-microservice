@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/customers")
+@RequestMapping("/natural")
 public class NaturalController {
 	
 	

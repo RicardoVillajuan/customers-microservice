@@ -21,5 +21,6 @@ public class Natural {
     private String firstName;
     private String lastName;
     private String email;
+    private String type;
     private CustomerProfile profile;
 }

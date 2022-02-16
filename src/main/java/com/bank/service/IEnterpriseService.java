@@ -12,4 +12,5 @@ public interface IEnterpriseService {
 	Flux<Enterprise> findAll();
 	Mono<Void> deleteById(String id);
 	Mono<Enterprise> findById(String id);
+	Mono<Enterprise> editById(Enterprise enterprise);
 }

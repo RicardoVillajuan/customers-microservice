@@ -39,6 +39,12 @@ public class EnterpriseServiceDb implements IEnterpriseService{
 		// TODO Auto-generated method stub
 		return repoEnterprise.findById(id);
 	}
+
+	@Override
+	public Mono<Enterprise> editById(Enterprise enterprise) {
+		// TODO Auto-generated method stub
+		return repoEnterprise.save(enterprise);
+	}
 	
 	
 }
