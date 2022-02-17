@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bank.entity.Natural;
+import com.bank.entity.Customer;
 
-import com.bank.servicedb.NaturalServiceImpl;
+import com.bank.servicedb.CustomerServiceDb;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
@@ -19,49 +19,40 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/natural")
-public class NaturalController {
+@RequestMapping("/customer")
+public class CustomerController {
 	
 	
-	private final NaturalServiceImpl service;
+	private final CustomerServiceDb service;
     
 
     @GetMapping
-    public Flux<Natural> findAll() {
+    public Flux<Customer> findAll() {
         
     	return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public Mono<Natural> findById(@PathVariable String id) {
+    public Mono<Customer> findById(@PathVariable String id) {
         
     	return service.findById(id);
     }
 
-    @PostMapping("")
-    public Mono<Natural> create(@RequestBody Natural natural) {
+    @PostMapping
+    public Mono<Customer> create(@RequestBody Customer customer) {
         
-    	return service.create(natural);
+    	return service.create(customer);
     }
 
     @PutMapping("/{id}")
-    public Mono<Natural> update(@PathVariable String id, @RequestBody Natural natural) {
+    public Mono<Customer> update(@PathVariable String id, @RequestBody Customer customer) {
         
-    	return service.findById(id).flatMap(e->{
-    		
-    	    e.setDni(natural.getDni());
-    	    e.setFirstName(natural.getFirstName());
-    	    e.setLastName(natural.getLastName());
-    	    e.setEmail(natural.getEmail());
-    	    e.setProfile(natural.getProfile());
-    	    return service.save(natural);
-    	});
+    	return service.update(id, customer);
     }
 
-    @DeleteMapping("natural/{id}")
+    @DeleteMapping("/{id}")
     public Mono<Void> delete(@PathVariable String id) {
         
-    	
     	return service.delete(id);
     }
 	
