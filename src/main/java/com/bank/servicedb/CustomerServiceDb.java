@@ -37,7 +37,7 @@ public class CustomerServiceDb implements ICustomerService {
 
 	@Override
 	public Mono<Customer> update(String id, Customer customer) {
-		return repoCustomer.findById(id).flatMap(naturalFound -> {
+		return repoCustomer.findById(id).flatMap(e -> {
 			return repoCustomer.save(customer);
 		});
 	}
